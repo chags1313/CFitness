@@ -1,5 +1,4 @@
--m pip install --upgrade pip
-pip install streamlit
-pip install pandas
-pip install pysqlite3 
-pip install numpy
+streamlit
+pandas
+pysqlite3 
+numpy
