@@ -32,7 +32,7 @@ def main():
     
     col1, col2 = st.columns(2)
     with col1:
-        st.title("Lift Data")
+        st.table(df)
     with col2:
        with st.expander("Add Lift Data"):
             st.title("Max Lift Entry")
@@ -107,23 +107,6 @@ def main():
         st.bar_chart(lift_4rm["Q2"])
         st.text("5 Rep Max")
         st.bar_chart(lift_5rm["Q2"])
-
-    
-
-
-
-
-       
-    
-    
-    #st.sidebar.header("Entries")
-
-    st.sidebar.table(df)
-    
-
-
-    
-
         
 
 
