@@ -48,12 +48,14 @@ def main():
     
         question_1 = st.selectbox('Select Lift',('','Pull Ups', 'Push Ups', 'Sit Ups', 'Back Squats', 'Front Squats', 'Overhead Squat', 'Split Squat', 'Clean', 'Hang Clean', 'Power Clean', 'Squat Clean', 'Bench Press', 'Push Press', 'Shoulder Press', 'Snatch Grip Push Press', 'Deadlifts'))
         st.write('You selected:', question_1)
+        
+        if question_1 is not None: 
+            question_2 = st.slider('Select Weight', 0, 400)
+            st.write('You selected:', question_2) 
+          
     
-        question_2 = st.slider('Select Weight', 0, 400)
-        st.write('You selected:', question_2) 
-    
-        question_3 = st.selectbox('Select Reps',('', '1 rep max', '2 rep max', '3 rep max', '4 rep max', '5 rep max'))
-        st.write('You selected:', question_3)
+            question_3 = st.selectbox('Select Reps',('', '1 rep max', '2 rep max', '3 rep max', '4 rep max', '5 rep max'))
+            st.write('You selected:', question_3)
     
         question_4 = st.slider("Enter Body Weight", 0, 300)
         st.write('You selected:', question_4)
