@@ -20,8 +20,6 @@ conn = sqlite3.connect('czfitness.db')
 c = conn.cursor()
     
 
-def create_table():
-    c.execute('CREATE TABLE IF NOT EXISTS max_data(date_submitted DATE, Q1 TEXT, Q2 INTEGER, Q3 TEXT, Q4 INTEGER, Q5 INTEGER)')
 
 def add_feedback(date_submitted, Q1, Q2, Q3, Q4, Q5):
     c.execute('INSERT INTO max_data (date_submitted,Q1, Q2, Q3, Q4, Q5) VALUES (?,?,?,?,?,?)',(date_submitted,Q1, Q2, Q3, Q4, Q5))
@@ -38,7 +36,11 @@ def main():
     st.sidebar.header("Cole Fitness Tracking")
     df = pd.read_sql("SELECT * FROM max_data", con = conn)
     df1 = df.rename(columns={'date_submitted':'index'}).set_index('index')
-    st.bar_chart(df[df["Q1"].str.contains('Back Squats', 'Front Squats', 'Overhead Squat', 'Split Squat', 'Clean', 'Hang Clean', 'Power Clean', 'Squat Clean', 'Bench Press', 'Push Press', 'Shoulder Press', 'Snatch Grip Push Press', 'Deadlifts')], use_container_width=True) 
+    bench_df = df[df["Q1"].str.contains("Bench Press")]
+    deadlift_df = df[df["Q1"].str.contains("Deadlifts")]
+    bs_df = df[df["Q1"].str.contains("Back Squats")]
+    tops['Back Squats','Bench Press','Deadlifts'] = max(bench_df), max(deadlift_df), max(bs_df)
+    st.bar_chart(tops), use_container_width=True) 
     st.bar_chart(df1["Q3"], use_container_width=True)    
 
     
