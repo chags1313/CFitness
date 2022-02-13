@@ -75,7 +75,7 @@ def main():
 
 
 
-    st.bar_chart(df1["Q2"], use_container_width=True) 
+    st.bar_chart(df1[["Q1", "Q2"]], use_container_width=True) 
     st.bar_chart(df1["Q3"], use_container_width=True)    
 
     
