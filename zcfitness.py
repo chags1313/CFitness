@@ -62,7 +62,7 @@ def main():
             st.success("New Max Entered")
             st.balloons()
 
-    rows = c.execute("SELECT Date, Lift, Weight, Reps, BW FROM max_data").fetchall()
+            rows = c.execute("SELECT Date, Lift, Weight, Reps, BW FROM max_data").fetchall()
     
 
         
