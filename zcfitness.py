@@ -107,7 +107,7 @@ def main():
 
         
 
-    bs_num = df[df["Q1"].str.contains("Back Squats")]
+    """bs_num = df[df["Q1"].str.contains("Back Squats")]
     bs_num = max(bs_num["Q2"])
     bp_num = df[df["Q1"].str.contains("Bench Press")]
     bp_num = max(bp_num["Q2"])
@@ -150,7 +150,7 @@ def main():
     "axes.facecolor":    (0.0, 1.0, 0.0, 0),  # green with alpha = 50%
     "savefig.facecolor": (0.0, 0.0, 1.0, 0),  # blue  with alpha = 20%
     })
-    st.sidebar.pyplot(fig=fig)
+    st.sidebar.pyplot(fig=fig)"""
     
     
     #st.sidebar.header("Entries")
