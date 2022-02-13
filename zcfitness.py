@@ -49,7 +49,7 @@ def main():
         question_1 = st.selectbox('Select Lift',('','Pull Ups', 'Push Ups', 'Sit Ups', 'Back Squats', 'Front Squats', 'Overhead Squat', 'Split Squat', 'Clean', 'Hang Clean', 'Power Clean', 'Squat Clean', 'Bench Press', 'Push Press', 'Shoulder Press', 'Snatch Grip Push Press', 'Deadlifts'))
         st.write('You selected:', question_1)
         
-        if question_1 is not None: 
+        if question_1 is not '': 
             question_2 = st.slider('Select Weight', 0, 400)
             st.write('You selected:', question_2) 
           
