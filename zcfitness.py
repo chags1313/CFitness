@@ -34,7 +34,7 @@ def main():
     if df['Date'] is not None:
         df1 = df.rename(columns={'Date':'index'}).set_index('index')
     else:
-        df1['Date'] = '02/13/2022'
+        df1 = df
     
 
     with st.expander("Add Lift Data"):
