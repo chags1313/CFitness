@@ -109,7 +109,7 @@ def main():
     
     #st.sidebar.header("Entries")
 
-    st.sidebar.dataframe(df)
+    st.sidebar.table(df)
     
 
 
