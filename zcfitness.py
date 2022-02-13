@@ -35,6 +35,7 @@ def main():
 
     st.sidebar.header("Fitness Tracker 🏋️‍♀️")
     st.sidebar.image("https://sites.temple.edu/moodandcognitionlab/files/2021/05/zoe-277x300.jpeg")
+    st.sidebar.text("Wake Up Beauty It's Time To Beast!")
  
     df = pd.read_sql("SELECT * FROM max_data", con = conn)
     df1 = df.rename(columns={'date_submitted':'index'}).set_index('index')
