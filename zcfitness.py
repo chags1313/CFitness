@@ -31,8 +31,6 @@ def main():
     df1 = df.rename(columns={'date_submitted':'index'}).set_index('index')
     
 
-    df3 = df.style
-    st.table(df3)
     with st.expander("Add Lift Data"):
         st.title("Max Lift Entry")
         d = st.date_input("Today's date",None, None, None, None)
@@ -60,6 +58,9 @@ def main():
             st.balloons()
 
     rows = c.execute("SELECT date_submitted, Q1, Q2, Q3, Q4 FROM max_data").fetchall()
+    
+    df3 = df.style
+    st.sidebar.write(print(df3))
         
       
  
