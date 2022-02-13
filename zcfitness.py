@@ -38,7 +38,7 @@ def main():
     st.sidebar.header("Cole Fitness Tracking")
     df = pd.read_sql("SELECT * FROM max_data", con = conn)
     df1 = df.rename(columns={'date_submitted':'index'}).set_index('index')
-    st.bar_chart(df1["Q2"], use_container_width=True) 
+    st.bar_chart(df[df["Q1"].str.contains('Back Squats', 'Front Squats', 'Overhead Squat', 'Split Squat', 'Clean', 'Hang Clean', 'Power Clean', 'Squat Clean', 'Bench Press', 'Push Press', 'Shoulder Press', 'Snatch Grip Push Press', 'Deadlifts')], use_container_width=True) 
     st.bar_chart(df1["Q3"], use_container_width=True)    
 
     
