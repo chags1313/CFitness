@@ -30,11 +30,11 @@ def add_feedback(Date, Lift, Weight, Reps, BW):
 
 def main():
     c.execute('CREATE TABLE IF NOT EXISTS max_data(Date DATE, Lift TEXT, Weight INTEGER, Reps TEXT, BW INTEGER)')
-    """df = pd.read_sql("SELECT * FROM max_data", con = conn)
+    df = pd.read_sql("SELECT * FROM max_data", con = conn)
     if df is not None:
         df1 = df.rename(columns={'Date':'index'}).set_index('index')
     else:
-        df1 = df"""
+        df1 = df
     
 
     with st.expander("Add Lift Data"):
