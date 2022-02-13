@@ -6,9 +6,14 @@ Created on Sun Jan 30 21:57:01 2022
 """
 
 import streamlit as st
+import matplotlib.pyplot as plt
 
 import numpy as np
 import pandas as pd
+from math import pi
+import numpy as np
+from matplotlib.patches import Patch
+from matplotlib.lines import Line2D
 
 import sqlite3
 conn = sqlite3.connect('czfitness.db')
