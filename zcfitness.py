@@ -38,14 +38,9 @@ def main():
     st.sidebar.header("Cole Fitness Tracking")
     df = pd.read_sql("SELECT * FROM max_data", con = conn)
     df1 = df.rename(columns={'date_submitted':'index'}).set_index('index')
-    
+    st.area_chart(df1['Q3'], use_container_width=True)
+    st.bar_chart(df1["Q3"], use_container_width=True)    
 
-    col1, col2 = st.columns(2)
-    with col1:
-        st.metric(label = "Body Weight", value = int(df["Q4"].iloc[-1]), delta = (int(df["Q4"].iloc[-1]) - int(df["Q4"].iloc[-2])))
-
-    with col2:
-        st.metric(label = "Overal Wellness Score", value = int(df["Q5"].iloc[-1]), delta = (int(df["Q5"].iloc[-1]) - int(df["Q5"].iloc[-2])))
     
     with st.expander("Add Lift Data"):
         st.title("Max Lift Entry")
@@ -159,7 +154,7 @@ def main():
     
     
     #st.sidebar.header("Entries")
-    st.sidebar.bar_chart(df1["Q3"], use_container_width=True)
+
 
     st.sidebar.dataframe(df)
     
