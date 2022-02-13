@@ -29,7 +29,7 @@ def add_feedback(Date, Lift, Weight, Reps, BW):
     conn.commit()
 
 def main():
-    #c.execute('CREATE TABLE IF NOT EXISTS max_data(Date DATE, Lift TEXT, Weight INTEGER, Reps TEXT, BW INTEGER)')
+    c.execute('CREATE TABLE IF NOT EXISTS max_data(Date DATE, Lift TEXT, Weight INTEGER, Reps TEXT, BW INTEGER)')
     """df = pd.read_sql("SELECT * FROM max_data", con = conn)
     if df is not None:
         df1 = df.rename(columns={'Date':'index'}).set_index('index')
@@ -63,7 +63,7 @@ def main():
             st.success("New Max Entered")
             st.balloons()
 
-    rows = c.execute("SELECT Date, Lift, Weight, Reps, BW FROM max_data").fetchall()
+    #rows = c.execute("SELECT Date, Lift, Weight, Reps, BW FROM max_data").fetchall()
     
 
         
