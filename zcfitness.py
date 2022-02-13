@@ -59,8 +59,7 @@ def main():
 
     rows = c.execute("SELECT date_submitted, Q1, Q2, Q3, Q4 FROM max_data").fetchall()
     
-    df3 = df.style
-    st.sidebar.write(print(df3))
+
         
       
  
@@ -68,6 +67,8 @@ def main():
     st.sidebar.header("Fitness Tracker 🏋️‍♀️")
     st.sidebar.image("https://sites.temple.edu/moodandcognitionlab/files/2021/05/zoe-277x300.jpeg")
     st.sidebar.text("Wake Up Beauty It's Time To Beast!")
+    df3 = df.style
+    st.sidebar.table(df3)
 
 
  
