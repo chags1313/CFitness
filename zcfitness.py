@@ -29,11 +29,41 @@ def main():
     
     df = pd.read_sql("SELECT * FROM max_data", con = conn)
     df1 = df.rename(columns={'date_submitted':'index'}).set_index('index')
+    
+    col1, col2 = st.columns(2)
+    with col1:
+        st.title("Lift Data")
+    with col2:
+       with st.expander("Add Lift Data"):
+            st.title("Max Lift Entry")
+    
+            d = st.date_input("Today's date",None, None, None, None)
+        
+            question_1 = st.selectbox('Select Lift',('','Back Squats', 'Front Squats', 'Overhead Squat', 'Split Squat', 'Clean', 'Hang Clean', 'Power Clean', 'Squat Clean', 'Bench Press', 'Push Press', 'Shoulder Press', 'Snatch Grip Push Press', 'Deadlifts', 'Front Box Squat', 'Front Pause Squat', 'Overhead Squat', 'Push Jerk', 'Split Jerk', 'Squat Jerk', 'Hang Power Snatch', 'Hang Squat Snatch', 'Power Snatch', 'Snatch', 'Squat Snatch', 'Romainian Deadlift', 'Sumo Deadlift', 'Clean and Jerk', 'Power Clean and Jerk'))
+            st.write('You selected:', question_1)
+        
+            if question_1 is not '': 
+                question_2 = st.slider('Select Weight', 0, 400)
+                st.write('You selected:', question_2) 
+          
+    
+                question_3 = st.selectbox('Select Reps',('', '1 rep max', '2 rep max', '3 rep max', '4 rep max', '5 rep max'))
+                st.write('You selected:', question_3)
+    
+            question_4 = st.slider("Enter Body Weight", 0, 300)
+            st.write('You selected:', question_4)
+    
+    
 
-    bs_goal = 325
-    bench_goal = 230
-    dead_goal = 325
-    st.title("Lift Data")
+            if st.button("Submit New Max"):
+                #create_table()
+                add_feedback(d, question_1, question_2, question_3, question_4)
+                st.success("New Max Entered")
+                st.balloons()
+
+    rows = c.execute("SELECT date_submitted, Q1, Q2, Q3, Q4 FROM max_data").fetchall()
+        
+      
  
 
     st.sidebar.header("Fitness Tracker 🏋️‍♀️")
@@ -47,34 +77,7 @@ def main():
 
  
 
-    with st.expander("Add Lift Data"):
-        st.title("Max Lift Entry")
 
-        d = st.date_input("Today's date",None, None, None, None)
-    
-        question_1 = st.selectbox('Select Lift',('','Back Squats', 'Front Squats', 'Overhead Squat', 'Split Squat', 'Clean', 'Hang Clean', 'Power Clean', 'Squat Clean', 'Bench Press', 'Push Press', 'Shoulder Press', 'Snatch Grip Push Press', 'Deadlifts', 'Front Box Squat', 'Front Pause Squat', 'Overhead Squat', 'Push Jerk', 'Split Jerk', 'Squat Jerk', 'Hang Power Snatch', 'Hang Squat Snatch', 'Power Snatch', 'Snatch', 'Squat Snatch', 'Romainian Deadlift', 'Sumo Deadlift', 'Clean and Jerk', 'Power Clean and Jerk'))
-        st.write('You selected:', question_1)
-        
-        if question_1 is not '': 
-            question_2 = st.slider('Select Weight', 0, 400)
-            st.write('You selected:', question_2) 
-          
-    
-            question_3 = st.selectbox('Select Reps',('', '1 rep max', '2 rep max', '3 rep max', '4 rep max', '5 rep max'))
-            st.write('You selected:', question_3)
-    
-        question_4 = st.slider("Enter Body Weight", 0, 300)
-        st.write('You selected:', question_4)
-    
-    
-
-        if st.button("Submit New Max"):
-            #create_table()
-            add_feedback(d, question_1, question_2, question_3, question_4)
-            st.success("New Max Entered")
-            st.balloons()
-
-    rows = c.execute("SELECT date_submitted, Q1, Q2, Q3, Q4 FROM max_data").fetchall()
 
     st.bar_chart(df1["Q2"], use_container_width=True) 
     st.bar_chart(df1["Q3"], use_container_width=True)    
