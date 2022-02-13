@@ -40,6 +40,10 @@ def main():
     st.sidebar.image("https://sites.temple.edu/moodandcognitionlab/files/2021/05/zoe-277x300.jpeg")
     st.sidebar.text("Wake Up Beauty It's Time To Beast!")
     st.sidebar.metric(label = "Body Weight", value = int(df["Q4"].iloc[-1]), delta = (int(df["Q4"].iloc[-1]) - int(df["Q4"].iloc[-2])))
+    fig, ax = plt.subplots()
+    ax.hist(df['Q1'])
+
+    st.pyplot(fig)
 
  
 
