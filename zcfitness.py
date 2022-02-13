@@ -20,18 +20,18 @@ conn = sqlite3.connect('czfitness.db')
 c = conn.cursor()
 
 def create_table():
-    c.execute('CREATE TABLE IF NOT EXISTS max_data(date_submitted DATE, Lift TEXT, Weight INTEGER, Reps TEXT, BW INTEGER)')
+    c.execute('CREATE TABLE IF NOT EXISTS max_data(Date DATE, Lift TEXT, Weight INTEGER, Reps TEXT, BW INTEGER)')
     
 
 
-def add_feedback(date_submitted, Lift, Weight, Reps, BW):
-    c.execute('INSERT INTO max_data (date_submitted, Lift, Weight, Reps, BW) VALUES (?,?,?,?,?)',(date_submitted, Lift, Weight, Reps, BW))
+def add_feedback(Date, Lift, Weight, Reps, BW):
+    c.execute('INSERT INTO max_data (Date, Lift, Weight, Reps, BW) VALUES (?,?,?,?,?)',(Date, Lift, Weight, Reps, BW))
     conn.commit()
 
 def main():
-    
+    c.execute('CREATE TABLE IF NOT EXISTS max_data(Date DATE, Lift TEXT, Weight INTEGER, Reps TEXT, BW INTEGER)')
     df = pd.read_sql("SELECT * FROM max_data", con = conn)
-    df1 = df.rename(columns={'date_submitted':'index'}).set_index('index')
+    df1 = df.rename(columns={'Date':'index'}).set_index('index')
     
 
     with st.expander("Add Lift Data"):
@@ -60,7 +60,7 @@ def main():
             st.success("New Max Entered")
             st.balloons()
 
-    rows = c.execute("SELECT date_submitted, Lift, Weight, Reps, BW FROM max_data").fetchall()
+    rows = c.execute("SELECT Date, Lift, Weight, Reps, BW FROM max_data").fetchall()
     
 
         
@@ -87,7 +87,7 @@ def main():
 
     if lifts:
         lift_df = df[df["Lift"].str.contains(lifts)]
-        lift_df = lift_df.rename(columns={'date_submitted':'index'}).set_index('index')
+        lift_df = lift_df.rename(columns={'Date':'index'}).set_index('index')
         lift_1rm = lift_df[lift_df["Q3"].str.contains('1 rep max')]
         lift_2rm = lift_df[lift_df["Q3"].str.contains('2 rep max')]
         lift_3rm = lift_df[lift_df["Q3"].str.contains('3 rep max')]
