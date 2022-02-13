@@ -36,6 +36,8 @@ def main():
     st.sidebar.header("Fitness Tracker 🏋️‍♀️")
     st.sidebar.image("https://sites.temple.edu/moodandcognitionlab/files/2021/05/zoe-277x300.jpeg")
     st.sidebar.text("Wake Up Beauty It's Time To Beast!")
+    st.sidebar.metric(label = "Body Weight", value = int(df["Q4"].iloc[-1]), delta = (int(df["Q4"].iloc[-1]) - int(df["Q4"].iloc[-2])))
+
  
     df = pd.read_sql("SELECT * FROM max_data", con = conn)
     df1 = df.rename(columns={'date_submitted':'index'}).set_index('index')
