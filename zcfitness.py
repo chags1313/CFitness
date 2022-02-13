@@ -26,6 +26,9 @@ def add_feedback(date_submitted, Q1, Q2, Q3, Q4):
     conn.commit()
 
 def main():
+    
+    df = pd.read_sql("SELECT * FROM max_data", con = conn)
+    df1 = df.rename(columns={'date_submitted':'index'}).set_index('index')
 
     bs_goal = 325
     bench_goal = 230
@@ -39,8 +42,7 @@ def main():
     st.sidebar.metric(label = "Body Weight", value = int(df["Q4"].iloc[-1]), delta = (int(df["Q4"].iloc[-1]) - int(df["Q4"].iloc[-2])))
 
  
-    df = pd.read_sql("SELECT * FROM max_data", con = conn)
-    df1 = df.rename(columns={'date_submitted':'index'}).set_index('index')
+
     with st.expander("Add Lift Data"):
         st.title("Max Lift Entry")
 
