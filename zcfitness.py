@@ -22,7 +22,7 @@ c = conn.cursor()
 
 
 def add_feedback(date_submitted, Q1, Q2, Q3, Q4):
-    c.execute('INSERT INTO max_data (date_submitted,Q1, Q2, Q3, Q4) VALUES (?,?,?,?,?,?)',(date_submitted,Q1, Q2, Q3, Q4))
+    c.execute('INSERT INTO max_data (date_submitted,Q1, Q2, Q3, Q4) VALUES (?,?,?,?,?)',(date_submitted,Q1, Q2, Q3, Q4))
     conn.commit()
 
 def main():
