@@ -38,11 +38,6 @@ def main():
  
     df = pd.read_sql("SELECT * FROM max_data", con = conn)
     df1 = df.rename(columns={'date_submitted':'index'}).set_index('index')
-
-    st.bar_chart(df1["Q2"], use_container_width=True) 
-    st.bar_chart(df1["Q3"], use_container_width=True)    
-
-    
     with st.expander("Add Lift Data"):
         st.title("Max Lift Entry")
 
@@ -72,8 +67,8 @@ def main():
 
     rows = c.execute("SELECT date_submitted, Q1, Q2, Q3, Q4 FROM max_data").fetchall()
 
-
-
+    st.bar_chart(df1["Q2"], use_container_width=True) 
+    st.bar_chart(df1["Q3"], use_container_width=True)    
 
     
     lifts = st.selectbox("Show Lift Progress", ('','Back Squats', 'Front Squats', 'Overhead Squat', 'Split Squat', 'Clean', 'Hang Clean', 'Power Clean', 'Squat Clean', 'Bench Press', 'Push Press', 'Shoulder Press', 'Snatch Grip Push Press', 'Deadlifts', 'Front Box Squat', 'Front Pause Squat', 'Overhead Squat', 'Push Jerk', 'Split Jerk', 'Squat Jerk', 'Hang Power Snatch', 'Hang Squat Snatch', 'Power Snatch', 'Snatch', 'Squat Snatch', 'Romainian Deadlift', 'Sumo Deadlift', 'Clean and Jerk', 'Power Clean and Jerk'))
