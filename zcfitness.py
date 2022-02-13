@@ -16,7 +16,7 @@ from matplotlib.patches import Patch
 from matplotlib.lines import Line2D
 
 import sqlite3
-conn = sqlite3.connect('czfitness.db')
+conn = sqlite3.connect('fit.db')
 c = conn.cursor()
 
 def create_table():
