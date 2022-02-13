@@ -30,10 +30,12 @@ def main():
     bs_goal = 325
     bench_goal = 230
     dead_goal = 325
-    st.title("Data Dashboard")
+    st.title("Lift Data")
  
 
-    st.sidebar.header("Cole Fitness Tracking")
+    st.sidebar.header("Fitness Tracker 🏋️‍♀️")
+    st.siderbar.image("https://sites.temple.edu/moodandcognitionlab/files/2021/05/zoe-277x300.jpeg")
+ 
     df = pd.read_sql("SELECT * FROM max_data", con = conn)
     df1 = df.rename(columns={'date_submitted':'index'}).set_index('index')
 
