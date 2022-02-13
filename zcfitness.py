@@ -21,8 +21,8 @@ c = conn.cursor()
     
 
 
-def add_feedback(date_submitted, Q1, Q2, Q3, Q4, Q5):
-    c.execute('INSERT INTO max_data (date_submitted,Q1, Q2, Q3, Q4, Q5) VALUES (?,?,?,?,?,?)',(date_submitted,Q1, Q2, Q3, Q4, Q5))
+def add_feedback(date_submitted, Q1, Q2, Q3, Q4):
+    c.execute('INSERT INTO max_data (date_submitted,Q1, Q2, Q3, Q4) VALUES (?,?,?,?,?,?)',(date_submitted,Q1, Q2, Q3, Q4))
     conn.commit()
 
 def main():
@@ -58,17 +58,15 @@ def main():
         question_4 = st.slider("Enter Body Weight", 0, 300)
         st.write('You selected:', question_4)
     
-        question_5 = st.slider("Score How You Are Feeling Today", 0, 100)
-        st.write('You selected:', question_5)
     
 
         if st.button("Submit New Max"):
             #create_table()
-            add_feedback(d, question_1, question_2, question_3, question_4, question_5)
+            add_feedback(d, question_1, question_2, question_3, question_4)
             st.success("New Max Entered")
             st.balloons()
 
-    rows = c.execute("SELECT date_submitted, Q1, Q2, Q3, Q4, Q5 FROM max_data").fetchall()
+    rows = c.execute("SELECT date_submitted, Q1, Q2, Q3, Q4 FROM max_data").fetchall()
 
 
 
