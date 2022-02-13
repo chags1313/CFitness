@@ -38,7 +38,7 @@ def main():
     st.sidebar.header("Cole Fitness Tracking")
     df = pd.read_sql("SELECT * FROM max_data", con = conn)
     df1 = df.rename(columns={'date_submitted':'index'}).set_index('index')
-    st.area_chart(df1['Q3'], use_container_width=True)
+    #st.area_chart(df1['Q3'], use_container_width=True)
     st.bar_chart(df1["Q3"], use_container_width=True)    
 
     
@@ -105,52 +105,7 @@ def main():
 
 
 
-        
-
-    """bs_num = df[df["Q1"].str.contains("Back Squats")]
-    bs_num = max(bs_num["Q2"])
-    bp_num = df[df["Q1"].str.contains("Bench Press")]
-    bp_num = max(bp_num["Q2"])
-    dead_num = df[df["Q1"].str.contains("Deadlifts")]
-    dead_num = max(dead_num["Q2"])
-    print(bs_num)
-    bs_cur = (bs_num/bs_goal) * 100
-    bench_cur = (bp_num/bench_goal) * 100
-    dead_cur = (dead_num/dead_goal)* 100
-    print(dead_cur)
-    #st.sidebar.header("Goals")
-    fig, ax = plt.subplots(figsize=(6, 6))
-
-    ax = plt.subplot(projection='polar')
-    data = [bs_cur, bench_cur, dead_cur]
-    #data = [10, 50, 100]
-    startangle = 90
-    colors = ['#4393E5', '#43BAE5', '#7AE6EA']
-    xs = [(i * pi *2)/ 100 for i in data]
-    ys = [-0.2, 1, 2.2]
-    left = (startangle * pi *2)/ 360 #this is to control where the bar starts
-    # plot bars and points at the end to make them round
-    for i, x in enumerate(xs):
-        ax.barh(ys[i], x, left=left, height=1, color=colors[i])
-        ax.scatter(x+left, ys[i], s=350, color=colors[i], zorder=2)
-        ax.scatter(left, ys[i], s=350, color=colors[i], zorder=2)
-    
-    plt.ylim(-4, 4)
-    # legend
-    legend_elements = [Line2D([0], [0], marker='o', color='w', label='Back Squat', markerfacecolor='#4393E5', markersize=10),
-                       Line2D([0], [0], marker='o', color='w', label='Bench Press', markerfacecolor='#43BAE5', markersize=10),
-                       Line2D([0], [0], marker='o', color='w', label='Deadlift', markerfacecolor='#7AE6EA', markersize=10)]
-    ax.legend(handles=legend_elements, loc='center', frameon=False)
-    # clear ticks, grids, spines
-    plt.xticks([])
-    plt.yticks([])
-    ax.spines.clear()
-    plt.rcParams.update({
-    "figure.facecolor":  (1.0, 0.0, 0.0, 0),  # red   with alpha = 30%
-    "axes.facecolor":    (0.0, 1.0, 0.0, 0),  # green with alpha = 50%
-    "savefig.facecolor": (0.0, 0.0, 1.0, 0),  # blue  with alpha = 20%
-    })
-    st.sidebar.pyplot(fig=fig)"""
+       
     
     
     #st.sidebar.header("Entries")
