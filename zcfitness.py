@@ -30,36 +30,34 @@ def main():
     df = pd.read_sql("SELECT * FROM max_data", con = conn)
     df1 = df.rename(columns={'date_submitted':'index'}).set_index('index')
     
-    col1, col2 = st.columns(2)
-    with col1:
-        st.table(df)
-    with col2:
-       with st.expander("Add Lift Data"):
-            st.title("Max Lift Entry")
-    
-            d = st.date_input("Today's date",None, None, None, None)
+
+    df3 = df.style
+    st.table(df3)
+    with st.expander("Add Lift Data"):
+        st.title("Max Lift Entry")
+        d = st.date_input("Today's date",None, None, None, None)
         
-            question_1 = st.selectbox('Select Lift',('','Back Squats', 'Front Squats', 'Overhead Squat', 'Split Squat', 'Clean', 'Hang Clean', 'Power Clean', 'Squat Clean', 'Bench Press', 'Push Press', 'Shoulder Press', 'Snatch Grip Push Press', 'Deadlifts', 'Front Box Squat', 'Front Pause Squat', 'Overhead Squat', 'Push Jerk', 'Split Jerk', 'Squat Jerk', 'Hang Power Snatch', 'Hang Squat Snatch', 'Power Snatch', 'Snatch', 'Squat Snatch', 'Romainian Deadlift', 'Sumo Deadlift', 'Clean and Jerk', 'Power Clean and Jerk'))
-            st.write('You selected:', question_1)
+        question_1 = st.selectbox('Select Lift',('','Back Squats', 'Front Squats', 'Overhead Squat', 'Split Squat', 'Clean', 'Hang Clean', 'Power Clean', 'Squat Clean', 'Bench Press', 'Push Press', 'Shoulder Press', 'Snatch Grip Push Press', 'Deadlifts', 'Front Box Squat', 'Front Pause Squat', 'Overhead Squat', 'Push Jerk', 'Split Jerk', 'Squat Jerk', 'Hang Power Snatch', 'Hang Squat Snatch', 'Power Snatch', 'Snatch', 'Squat Snatch', 'Romainian Deadlift', 'Sumo Deadlift', 'Clean and Jerk', 'Power Clean and Jerk'))
+        st.write('You selected:', question_1)
         
-            if question_1 is not '': 
-                question_2 = st.slider('Select Weight', 0, 400)
-                st.write('You selected:', question_2) 
+        if question_1 is not '': 
+            question_2 = st.slider('Select Weight', 0, 400)
+            st.write('You selected:', question_2) 
           
     
-                question_3 = st.selectbox('Select Reps',('', '1 rep max', '2 rep max', '3 rep max', '4 rep max', '5 rep max'))
-                st.write('You selected:', question_3)
+            question_3 = st.selectbox('Select Reps',('', '1 rep max', '2 rep max', '3 rep max', '4 rep max', '5 rep max'))
+            st.write('You selected:', question_3)
     
-            question_4 = st.slider("Enter Body Weight", 0, 300)
-            st.write('You selected:', question_4)
+        question_4 = st.slider("Enter Body Weight", 0, 300)
+        st.write('You selected:', question_4)
     
     
 
-            if st.button("Submit New Max"):
-                #create_table()
-                add_feedback(d, question_1, question_2, question_3, question_4)
-                st.success("New Max Entered")
-                st.balloons()
+        if st.button("Submit New Max"):
+            #create_table()
+            add_feedback(d, question_1, question_2, question_3, question_4)
+            st.success("New Max Entered")
+            st.balloons()
 
     rows = c.execute("SELECT date_submitted, Q1, Q2, Q3, Q4 FROM max_data").fetchall()
         
@@ -69,11 +67,7 @@ def main():
     st.sidebar.header("Fitness Tracker 🏋️‍♀️")
     st.sidebar.image("https://sites.temple.edu/moodandcognitionlab/files/2021/05/zoe-277x300.jpeg")
     st.sidebar.text("Wake Up Beauty It's Time To Beast!")
-    st.sidebar.metric(label = "Body Weight", value = int(df["Q4"].iloc[-1]), delta = (int(df["Q4"].iloc[-1]) - int(df["Q4"].iloc[-2])))
-    fig, ax = plt.subplots()
-    ax.hist(df['Q1'])
 
-    st.pyplot(fig)
 
  
 
