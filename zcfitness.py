@@ -36,11 +36,8 @@ def main():
     st.sidebar.header("Cole Fitness Tracking")
     df = pd.read_sql("SELECT * FROM max_data", con = conn)
     df1 = df.rename(columns={'date_submitted':'index'}).set_index('index')
-    bench_df = df[df["Q1"].str.contains("Bench Press")]
-    deadlift_df = df[df["Q1"].str.contains("Deadlifts")]
-    bs_df = df[df["Q1"].str.contains("Back Squats")]
-    tops = pd.DataFrame(max(bench_df), max(deadlift_df), max(bs_df))
-    st.bar_chart(tops, use_container_width=True) 
+
+    st.bar_chart(df1["Q2"], use_container_width=True) 
     st.bar_chart(df1["Q3"], use_container_width=True)    
 
     
