@@ -20,19 +20,19 @@ conn = sqlite3.connect('fit.db')
 c = conn.cursor()
 
 def create_table():
-    c.execute('CREATE TABLE IF NOT EXISTS max_data(Date DATE, Lift TEXT, Weight INTEGER, Reps TEXT, BW INTEGER)')
+    c.execute('CREATE TABLE IF NOT EXISTS max_data(date_submitted DATE, Lift TEXT, Weight INTEGER, Reps TEXT, BW INTEGER)')
     
 
 
 def add_feedback(Date, Lift, Weight, Reps, BW):
-    c.execute('INSERT INTO max_data (Date, Lift, Weight, Reps, BW) VALUES (?,?,?,?,?)',(Date, Lift, Weight, Reps, BW))
+    c.execute('INSERT INTO max_data (date_submitted, Lift, Weight, Reps, BW) VALUES (?,?,?,?,?)',(Date, Lift, Weight, Reps, BW))
     conn.commit()
 
 def main():
     #c.execute('CREATE TABLE IF NOT EXISTS max_data(Date DATE, Lift TEXT, Weight INTEGER, Reps TEXT, BW INTEGER)')
     df = pd.read_sql("SELECT * FROM max_data", con = conn)
-    df["Date"] = "10/26/1995"
-    df1 = df.rename(columns={'Date':'index'}).set_index('index')
+    df["date_submitted"] = "10/26/1995"
+    df1 = df.rename(columns={'date_submitted':'index'}).set_index('index')
 
     
 
@@ -44,14 +44,14 @@ def main():
         st.write('You selected:', question_1)
         
         if question_1 is not '': 
-            question_2 = st.slider('Select Weight', 0, 400)
+            question_2 = st.number_input('Select Weight')
             st.write('You selected:', question_2) 
           
     
             question_3 = st.selectbox('Select Reps',('', '1 rep max', '2 rep max', '3 rep max', '4 rep max', '5 rep max'))
             st.write('You selected:', question_3)
     
-        question_4 = st.slider("Enter Body Weight", 0, 300)
+        question_4 = st.number_input("Enter Body Weight")
         st.write('You selected:', question_4)
     
     
@@ -62,7 +62,7 @@ def main():
             st.success("New Max Entered")
             st.balloons()
 
-            rows = c.execute("SELECT Date, Lift, Weight, Reps, BW FROM max_data").fetchall()
+            rows = c.execute("SELECT date_submitted, Lift, Weight, Reps, BW FROM max_data").fetchall()
     
 
         
@@ -89,7 +89,7 @@ def main():
 
     if lifts:
         lift_df = df[df["Lift"].str.contains(lifts)]
-        lift_df = lift_df.rename(columns={'Date':'index'}).set_index('index')
+        lift_df = lift_df.rename(columns={'date_submitted':'index'}).set_index('index')
         lift_1rm = lift_df[lift_df["Q3"].str.contains('1 rep max')]
         lift_2rm = lift_df[lift_df["Q3"].str.contains('2 rep max')]
         lift_3rm = lift_df[lift_df["Q3"].str.contains('3 rep max')]
