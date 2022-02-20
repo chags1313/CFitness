@@ -31,7 +31,7 @@ def add_feedback(Date, Lift, Weight, Reps, BW):
 def main():
     #c.execute('CREATE TABLE IF NOT EXISTS max_data(Date DATE, Lift TEXT, Weight INTEGER, Reps TEXT, BW INTEGER)')
     df = pd.read_sql("SELECT * FROM max_data", con = conn)
-    df["date_submitted"] = "10/26/1995"
+    #df["date_submitted"] = "10/26/1995"
     df1 = df.rename(columns={'date_submitted':'index'}).set_index('index')
 
     
@@ -90,11 +90,11 @@ def main():
     if lifts:
         lift_df = df[df["Lift"].str.contains(lifts)]
         lift_df = lift_df.rename(columns={'date_submitted':'index'}).set_index('index')
-        lift_1rm = lift_df[lift_df["Q3"].str.contains('1 rep max')]
-        lift_2rm = lift_df[lift_df["Q3"].str.contains('2 rep max')]
-        lift_3rm = lift_df[lift_df["Q3"].str.contains('3 rep max')]
-        lift_4rm = lift_df[lift_df["Q3"].str.contains('4 rep max')]
-        lift_5rm = lift_df[lift_df["Q3"].str.contains('5 rep max')]
+        lift_1rm = lift_df[lift_df["Lift"].str.contains('1 rep max')]
+        lift_2rm = lift_df[lift_df["Lift"].str.contains('2 rep max')]
+        lift_3rm = lift_df[lift_df["Lift"].str.contains('3 rep max')]
+        lift_4rm = lift_df[lift_df["Lift"].str.contains('4 rep max')]
+        lift_5rm = lift_df[lift_df["Lift"].str.contains('5 rep max')]
 
 
         #st.line_chart(bsq1rm["2"])
