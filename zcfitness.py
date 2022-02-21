@@ -72,9 +72,9 @@ def main():
     st.sidebar.header("Fitness Tracker 🏋️‍♀️")
     st.sidebar.image("https://sites.temple.edu/moodandcognitionlab/files/2021/05/zoe-277x300.jpeg")
     st.sidebar.text("Wake Up Beauty It's Time To Beast!")
-    df3 = df.style
-    st.sidebar.area_chart(df1["BW"])
-    st.sidebar.table(df3)
+    st.sidebar.table(df1)
+    bw_df = df1[df1["BW"] > 1]]
+    st.sidebar.table(bw_df)
 
 
  
