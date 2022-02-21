@@ -73,8 +73,8 @@ def main():
     st.sidebar.image("https://sites.temple.edu/moodandcognitionlab/files/2021/05/zoe-277x300.jpeg")
     st.sidebar.text("Wake Up Beauty It's Time To Beast!")
     st.sidebar.table(df1)
-    bw_df = df1[df1["BW"] > 1]
-    st.sidebar.area_chart(bw_df)
+    #bw_df = df1[df1["BW"] > 1]
+    #st.sidebar.area_chart(bw_df)
 
 
  
