@@ -91,9 +91,9 @@ def main():
         lift_df = df1[df1["Lift"].str.contains(lifts)]
         #lift_df = lift_df.rename(columns={'date_submitted':'index'}).set_index('index')
         lift_1rm = lift_df[lift_df["Lift"].str.contains('1 rep max')]
-        st.write(lift_3rm)
         lift_2rm = lift_df[lift_df["Lift"].str.contains('2 rep max')]
         lift_3rm = lift_df[lift_df["Lift"].str.contains('3 rep max')]
+        st.write(lift_3rm)
         lift_4rm = lift_df[lift_df["Lift"].str.contains('4 rep max')]
         lift_5rm = lift_df[lift_df["Lift"].str.contains('5 rep max')]
 
