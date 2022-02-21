@@ -73,6 +73,7 @@ def main():
     st.sidebar.image("https://sites.temple.edu/moodandcognitionlab/files/2021/05/zoe-277x300.jpeg")
     st.sidebar.text("Wake Up Beauty It's Time To Beast!")
     df3 = df.style
+    st.sidebar.area_chart(df1["BW"])
     st.sidebar.table(df3)
 
 
@@ -81,7 +82,7 @@ def main():
 
 
     st.bar_chart(df1["Weight"], use_container_width=True) 
-    st.bar_chart(df1["Reps"], use_container_width=True)    
+    st.bar_chart(df1["Reps"], use_container_width=True) 
 
     
     lifts = st.selectbox("Show Lift Progress", ('','Back Squats', 'Front Squats', 'Overhead Squat', 'Split Squat', 'Clean', 'Hang Clean', 'Power Clean', 'Squat Clean', 'Bench Press', 'Push Press', 'Shoulder Press', 'Snatch Grip Push Press', 'Deadlifts', 'Front Box Squat', 'Front Pause Squat', 'Overhead Squat', 'Push Jerk', 'Split Jerk', 'Squat Jerk', 'Hang Power Snatch', 'Hang Squat Snatch', 'Power Snatch', 'Snatch', 'Squat Snatch', 'Romainian Deadlift', 'Sumo Deadlift', 'Clean and Jerk', 'Power Clean and Jerk'))
